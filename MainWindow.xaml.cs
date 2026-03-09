@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace UrzadzeniaDomowe
 {
@@ -21,12 +22,16 @@ namespace UrzadzeniaDomowe
         private int? washingNumber = default!;
         public int? WashingNumber { get { return washingNumber; } set { washingNumber = value; OnPropertyChanged(); } }
 
+        private Visibility placeHolderVisibility = default!;
+        public Visibility PlaceHolderVisibility { get { return placeHolderVisibility; } set { placeHolderVisibility = value; OnPropertyChanged(); } }
+
         public MainWindow()
         {
             VacuumeStatus = "wyłączony";
             VacuumeButtonStatus = "Włącz";
             WashingNumberText = "";
             WashingNumber = null;
+            PlaceHolderVisibility = Visibility.Visible;
 
             InitializeComponent();
 
@@ -60,6 +65,28 @@ namespace UrzadzeniaDomowe
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null!)
         {
             PropertyChanged?.Invoke(this, new(propertyName));
+        }
+        private void Label_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            textBox.Focus();
+        }
+
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+           
+        }
+
+        private void textBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if ((sender as TextBox)!.Text == string.Empty)
+                PlaceHolderVisibility = Visibility.Visible;
+            else
+                PlaceHolderVisibility = Visibility.Hidden;
+        }
+
+        private void textBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            PlaceHolderVisibility = Visibility.Hidden;
         }
 
     }
