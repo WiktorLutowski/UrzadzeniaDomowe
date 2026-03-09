@@ -1,0 +1,54 @@
+﻿<Window x:Class="UrzadzeniaDomowe.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UrzadzeniaDomowe"
+        mc:Ignorable="d"
+        Title="UrzadzeniaDomowe" Height="600" Width="400"
+        Background="LightBlue">
+    <StackPanel Orientation="Vertical">
+        <Label Content="Urządzenia Domowe" HorizontalAlignment="Center" FontSize="25" Margin="5"/>
+        <Label Content="Autor: Wiktor Lutowski" HorizontalAlignment="Center" FontSize="16" Margin="5"/>
+
+        <Grid Margin="20 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Image Source="/Images/pralka.jpg" Height="150" Margin="20 0 20 20"/>
+
+            <StackPanel Orientation="Vertical" Grid.Column="1">
+                <Label Content="Pralka" FontSize="25"/>
+                <TextBox Background="SkyBlue" Padding="5" Foreground="Navy" Text="{Binding WashingNumberText}"/>
+                <Button Click="WashingMachineConfirm_Click" Content="Zatwierdź" Margin="10" Background="RoyalBlue" Foreground="White" FontSize="16" Padding="5"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Numer prania: " Padding="5 5 0 5" FontSize="12"/>
+                    <Label Content="{Binding WashingNumber, TargetNullValue='nie podano'}" FontSize="12" Padding="0 5 5 5"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Margin="20 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="/Images/odkurzacz.jpg" Height="150" Margin="20 0 20 20"/>
+
+            <StackPanel Orientation="Vertical" Grid.Column="1">
+                <Label Content="Odkurzacz" FontSize="25"/>
+                <Button Click="VacuumeOnButton_Click" Content="{Binding VacuumeButtonStatus}" HorizontalAlignment="Left" Margin="10" Background="RoyalBlue" Foreground="White" FontSize="16" Padding="5" Width="100"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Odkurzacz " Padding="5 5 0 5" FontSize="12"/>
+                    <Label Content="{Binding VacuumeStatus}" FontSize="12" Padding="0 5 5 5"/>
+                </StackPanel>
+                <Label Content="Status: naładowany" FontSize="12"/>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+</Window>
