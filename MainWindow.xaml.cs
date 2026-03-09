@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace UrzadzeniaDomowe
 {
@@ -71,23 +73,18 @@ namespace UrzadzeniaDomowe
             textBox.Focus();
         }
 
-        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void textBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-           
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void textBox_LostFocus(object sender, RoutedEventArgs e)
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             if ((sender as TextBox)!.Text == string.Empty)
                 PlaceHolderVisibility = Visibility.Visible;
             else
                 PlaceHolderVisibility = Visibility.Hidden;
         }
-
-        private void textBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            PlaceHolderVisibility = Visibility.Hidden;
-        }
-
     }
 }

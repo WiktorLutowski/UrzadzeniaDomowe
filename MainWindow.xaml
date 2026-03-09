@@ -22,8 +22,8 @@
             <StackPanel Orientation="Vertical" Grid.Column="1">
                 <Label Content="Pralka" FontSize="25"/>
                 <Grid>
-                    <TextBox LostFocus="textBox_LostFocus" Name="textBox" GotFocus="textBox_GotFocus" Background="SkyBlue" Padding="5" Foreground="Navy" Text="{Binding WashingNumberText}"/>
-                    <Label MouseDown="Label_MouseDown" Content="Podaj nr prania 1..12" Foreground="#AA000080" Visibility="{Binding PlaceHolderVisibility}"/>
+                    <TextBox Name="textBox" PreviewTextInput="textBox_PreviewTextInput" TextChanged="textBox_TextChanged" Background="SkyBlue" Padding="5" Foreground="Navy" Text="{Binding WashingNumberText}"/>
+                    <Label MouseDown="Label_MouseDown" Margin="3 0 0 0" Content="Podaj nr prania 1..12" Foreground="#AA000080" Visibility="{Binding PlaceHolderVisibility}"/>
                 </Grid>
                 <Button Click="WashingMachineConfirm_Click" Content="Zatwierdź" Margin="10" Background="RoyalBlue" Foreground="White" FontSize="16" Padding="5"/>
 
